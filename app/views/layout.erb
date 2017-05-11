@@ -14,6 +14,27 @@
     <div class="max-w-700 center wrap-float">
       <nav class="clearfix mar-b-1">
         <ul class="no-bullets no-margin no-padding right">
+
+          <li class="pipe-separate t-light-green left">
+          <% if session['user_id'] %>
+          <% user = User.find_by(id: session['user_id']) %>
+          <%= user.username %>
+          <%=  %>
+          <% else %>
+          <a href="/users"><%= 'register' %></a>
+          <% end %>
+          </li>
+          <li class="pipe-separate t-light-green left"><a href="/users/login">
+          <% if session['user_id'] %>
+          <% user = User.find_by(id: session['user_id']) %>
+          <form action="/users" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <input type="submit" value="logout">
+          </form>
+          <% else %>
+          <a href="/users/login"><%= 'login' %></a>
+          <% end %>
+          </a></li>
           <li class="pipe-separate t-light-green left"><a href="/">home</a></li>
         </ul>
       </nav>

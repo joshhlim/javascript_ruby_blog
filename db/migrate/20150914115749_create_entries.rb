@@ -3,6 +3,7 @@ class CreateEntries < ActiveRecord::Migration
     create_table :entries do |t|
       t.string :title, { limit: 64, null: false }
       t.text :body, { null: false }
+      t.integer :user_id, { null: false }
 
       t.timestamps(null: false)
     end
