@@ -1,0 +1,22 @@
+<form action="<%= user_action(user) %>" method="post">
+  <% if user.persisted? %>
+    <input type="hidden" name="_method" value="put" />
+  <% end %>
+
+  <div class="fieldset">
+    <label for="name_input">Full Name:</label>
+    <input type="text" name="user[full_name]" placeholder="<%= user.full_name%>">
+  </div>
+
+  <div class="fieldset">
+    <label for="email_input">Email:</label>
+    <input type="text" name="user[email]" placeholder="<%= user.email %>">
+  </div>
+
+  <div class="fieldset">
+    <label for="password_input">Password:</label>
+    <input type="text" name="user[password]" value="************">
+  </div>
+
+  <input type="submit" value="<%= submit_button_value(user) %>">
+</form>

@@ -23,4 +23,14 @@ content_for_entries = [
     :body  => "Water spinach arugula pea tatsoi aubergine spring onion bush tomato kale radicchio turnip chicory salsify pea sprouts fava bean. Dandelion zucchini burdock yarrow chickpea dandelion sorrel courgette turnip greens tigernut soybean radish artichoke wattle seed endive groundnut broccoli arugula."}
 ]
 
+authors = [
+  {full_name: 'John the Ripper', email: 'ilovekilling@email.com', password: 'fuckvegans'}, {full_name: 'Mother Teresa', email: 'ilovehealing@email.com', password: 'lovevegans'}
+]
+authors.each do |author|
+User.create(author)
+end
+
 Entry.create!(content_for_entries)
+Entry.all.each do |entry|
+  entry.update_attributes(user_id: rand(1..2))
+  end
