@@ -14,9 +14,9 @@
     <div class="max-w-700 center wrap-float">
       <nav class="clearfix mar-b-1">
         <ul class="no-bullets no-margin no-padding right">
+          <li class="pipe-separate t-light-green left"><%=@user.username%></li>
+          <li class="pipe-separate t-light-green left"><a href="/users/logout">logout</a></li>
           <li class="pipe-separate t-light-green left"><a href="/">home</a></li>
-          <li class="pipe-separate t-light-green left"><a href="/users/new">create account</a></li>
-          <li class="pipe-separate t-light-green left"><a href="/users/login">log in</a></li>
         </ul>
       </nav>
 
@@ -26,11 +26,21 @@
       </div>
     </div>
   </header>
-
-  <div class="bg-dk-green pad-t-2 pad-s-1 pad-b-8 mar-b-16 c-white">
+ <div class="bg-dk-green pad-t-2 pad-s-1 pad-b-8 mar-b-16 c-white">
     <div class="max-w-700 center">
-      <%= yield %>
+    <a href="/entries/new" class="block button w-100 mar-t-2 mar-b-3 pad-2 round-1 text-c center">Write about Broccoli</a>
+     <ul>
+     <% @entries.each do |entry| %>
+     <li><%= entry.title %></li>
+     <% end %>
+     </ul>
     </div>
-  </div>
+    </div>
+    </div>
+
+
+
 </body>
 </html>
+
+
