@@ -4,7 +4,8 @@ module UserFormHelpers
   end
 
   def user_action(user)
-    user.persisted? ? "/users/#{user.id}" : "/users"
+    p user.inspect
+    user.id ? "/users/#{user.id}" : "/login"
   end
 end
 
