@@ -2,6 +2,11 @@ get '/users' do
 
 end
 
+get '/users/logout' do
+  session.delete(:id)
+  redirect '/'
+end
+
 get '/users/login' do
   erb :'users/login'
 end
@@ -54,7 +59,10 @@ end
 get '/users/:id/profile' do
   @user = User.find(params[:id])
   @entries = @user.entries
-  erb :'users/profile', :layout => false
+  erb :'users/profile'
 end
+
+
+
 
 

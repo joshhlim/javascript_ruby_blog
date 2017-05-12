@@ -1,0 +1,18 @@
+<% if session[:id] %>
+  <nav class="clearfix mar-b-1">
+  <% @user = User.find(session[:id]) %>
+        <ul class="no-bullets no-margin no-padding right">
+          <li class="pipe-separate t-light-green left"><a href="/users/<%= @user.id %>/profile"><%=@user.username%></a></li>
+          <li class="pipe-separate t-light-green left"><a href="/users/logout">logout</a></li>
+          <li class="pipe-separate t-light-green left"><a href="/">home</a></li>
+        </ul>
+      </nav>
+<% else %>
+      <nav class="clearfix mar-b-1">
+        <ul class="no-bullets no-margin no-padding right">
+          <li class="pipe-separate t-light-green left"><a href="/">home</a></li>
+          <li class="pipe-separate t-light-green left"><a href="/users/new">create account</a></li>
+          <li class="pipe-separate t-light-green left"><a href="/users/login">log in</a></li>
+        </ul>
+      </nav>
+<% end %>

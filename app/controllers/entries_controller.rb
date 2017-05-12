@@ -5,6 +5,7 @@ get '/entries' do
 end
 
 post '/entries' do
+  params[:entry][:user_id] = session[:id]
   @entry = Entry.new(params[:entry])
 
   if @entry.save
