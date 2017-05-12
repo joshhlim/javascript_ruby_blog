@@ -18,6 +18,7 @@ post '/entries' do
 end
 
 get '/entries/new' do
+  verify_login
   erb :'entries/new'
 end
 
@@ -45,6 +46,8 @@ delete '/entries/:id' do
 end
 
 get '/entries/:id/edit' do
+  verify_login
   @entry = find_and_ensure_entry(params[:id])
+  verify_user
   erb :'entries/edit'
 end

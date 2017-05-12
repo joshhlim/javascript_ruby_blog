@@ -1,5 +1,12 @@
 enable :sessions
 
+get '/users/:id/entries' do
+  @user = User.find_by(id: params[:id])
+  if @user then @entries = @user.entries else @entries = [] end
+  verify_authorship
+  erb :'/users/entries'
+end
+
 get '/users' do
   @errors = []
   erb :'/users/index'
@@ -29,7 +36,7 @@ end
 post '/users' do
   user = User.create(params[:user])
   if user.valid?
-    session['user_id'] = @user.id
+    session['user_id'] = user.id
     redirect to "/users/#{user.id}"
   else
     @errors = user.errors.full_messages
@@ -41,3 +48,4 @@ delete '/users' do
   session.delete('user_id')
   redirect to '/users'
 end
+
