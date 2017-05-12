@@ -45,5 +45,9 @@ end
 
 get '/entries/:id/edit' do
   @entry = find_and_ensure_entry(params[:id])
-  erb :'entries/edit'
+  if @entry.user_id == session[:id]
+    erb :'entries/edit'
+  else
+    erb :'404'
+  end
 end
