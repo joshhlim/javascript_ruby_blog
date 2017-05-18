@@ -10,7 +10,7 @@ post '/entries' do
 
   if @entry.save
     if request.xhr?
-      erb :"_post", dd:layout => false :locals => {:entry => @entry}
+      erb :"_post", :layout => false, :locals => {:entry => @entry}
     else
       redirect "/entries/#{@entry.id}"
     end
