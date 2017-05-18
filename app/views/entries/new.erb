@@ -9,7 +9,7 @@
   </ul>
 <% end %>
 
-<form method="post" action="/entries">
+<form id="post" method="post" action="/entries">
   <label for="title-input" class="block mar-b-1">Title:</label>
   <input id="title-input" name="entry[title]" type="text" value="<%= @entry.try(:title) %>" tabindex="1" class="block w-100 no-outline no-border pad-1 mar-b-2">
 
