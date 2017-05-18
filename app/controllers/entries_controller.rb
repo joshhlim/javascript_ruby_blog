@@ -32,12 +32,14 @@ end
 put '/entries/:id' do
   @entry = find_and_ensure_entry(params[:id])
   @entry.assign_attributes(params[:entry])
-
-  if @entry.save
-    redirect "entries/#{@entry.id}"
+  @entry.save
+ puts params
+  if request.xhr?
+    erb :'entries/show', layout: false, locals: {entry: @entry}
   else
-    @errors = @entry.errors.full_messages
-    erb :'entries/edit'
+    redirect "entries/#{@entry.id}"
+    # @errors = @entry.errors.full_messages
+    # erb :'entries/edit'
   end
 end
 
@@ -54,5 +56,9 @@ end
 
 get '/entries/:id/edit' do
   @entry = find_and_ensure_entry(params[:id])
-  erb :'entries/edit'
+  if request.xhr?
+    erb :'entries/edit', layout: false, locals: {entry: @entry}
+  else
+    erb :'entries/edit'
+  end
 end

@@ -33,7 +33,14 @@ post '/users' do
   @user.password=(params[:user][:password])
   @user.save
   session[:id] = @user.id
-  redirect "/"
+
+  if request.xhr?
+    response = {name: @user.full_name, email: @user.email}
+    content_type :json
+    p response.to_json
+  else
+    redirect "/"
+  end
 end
 
 get '/users/:id/edit' do
