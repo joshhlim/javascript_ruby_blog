@@ -4,9 +4,6 @@
   <link rel="stylesheet" href="/css/normalize.css">
   <link rel="stylesheet" href="/css/application.css">
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script src="/js/application.js"></script>
-
   <title>Broccoli Blog</title>
 </head>
 <body>
@@ -31,7 +28,7 @@
 
   <ul class="entries-list no-bullets no-padding">
     <% @entries.each do |entry| %>
-      <%= erb :"_post", :layout => false, :locals => {:entry => entry} %>    
+      <%= erb :"_post", layout: false, :locals => {:entry => entry} %>
     <% end %>
   </ul>
 </main>

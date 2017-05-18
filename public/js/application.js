@@ -1,10 +1,13 @@
 $(document).ready(function() {
+  console.log("ready")
+
   $("a#new-post").click(function(e) {
     e.preventDefault();
     $("form#post").show();
   })
 
   $("form#post").submit(function(e) {
+    debugger
     e.preventDefault();
     var input = $(this).serialize();
     $.ajax({
@@ -13,8 +16,9 @@ $(document).ready(function() {
       data: input
     })
     .done(function(response) {
-      $("form#post").hide();
+      console.log(response)
       $("ul.entries-list").append(response);
+      $("form#post").hide();
     })
   })
 });
