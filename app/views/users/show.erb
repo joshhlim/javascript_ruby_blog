@@ -1,8 +1,6 @@
 <h1>Welcome <%= @user.full_name.split.first %>!</h1>
 
-<% if session[:id] %>
-<a href="/entries/new" class="block button w-100 mar-t-2 mar-b-3 pad-2 round-1 text-c center"><%= 'Write about Broccoli' %></a>
-<% end %>
+<span class="entry-date block font-3-4 c-lt-gray"><%= "Account created on #{long_form_date(@user.created_at)}." %></span>
 
 <a href="/users/<%= @user.id %>/edit">Change Personal Information</a>
 <span class="entry-date block font-3-4 c-lt-gray">Here Are Your Articles</span>

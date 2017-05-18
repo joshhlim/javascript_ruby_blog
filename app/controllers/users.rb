@@ -9,30 +9,31 @@ post '/login' do
   @user = User.find_by(email: params[:user][:email])
   if @user.authenticate(params[:user][:email], params[:user][:password])
     session[:id] = @user.id
-    redirect "/users/#{@user.id}"
+    redirect "/"
   else
     erb :'users/login'
   end
 end
 
+get '/users/new' do
+  erb :'users/new'
+end
+
 get '/users/:id' do
   erb :'users/login' unless session[:id]
   @user = User.find(params[:id])
+  puts @user.inspect
   erb :'users/show'
 end
 
-get '/users/new' do
-  @user = User.new
-  erb :'users/login'
-  #same kind of form
-end
+
 
 post '/users' do
   @user = User.new(params[:user])
   @user.password=(params[:user][:password])
   @user.save
   session[:id] = @user.id
-  redirect "/users/#{@user.id}"
+  redirect "/"
 end
 
 get '/users/:id/edit' do
@@ -45,7 +46,7 @@ put '/users/:id' do
   @user.assign_attributes(params[:user])
   @user.password=(params[:user][:password])
   @user.save
-  redirect "/users/#{@user.id}"
+  redirect "/"
 end
 
 get '/users/:id/entry' do

@@ -1,0 +1,14 @@
+<div class="fieldset">
+    <label for="name_input">Full Name:</label>
+    <input type="text" name="user[full_name]" value="<%= user.try(:full_name) %>">
+  </div>
+
+  <div class="fieldset">
+    <label for="email_input">Email:</label>
+    <input type="text" name="user[email]" value="<%= user.try(:email) %>">
+  </div>
+
+  <div class="fieldset">
+    <label for="password_input">Password:</label>
+    <input type="text" name="user[password]" placeholder="************">
+  </div>

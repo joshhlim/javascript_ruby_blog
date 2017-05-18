@@ -6,13 +6,18 @@ end
 
 post '/entries' do
   @entry = Entry.new(params[:entry])
+  @entry.assign_attributes(user_id: session[:id])
+  @entry.save
 
-  if @entry.save
-    redirect "/entries/#{@entry.id}"
+  if request.xhr?
+    erb :'entries/_post', layout: false, locals: {entry: @entry}
   else
-    @errors = @entry.errors.full_messages
-    erb :'entries/new'
+    redirect "/entries/#{@entry.id}"
   end
+  # else
+  #   @errors = @entry.errors.full_messages
+  #   erb :'entries/new'
+  # end
 end
 
 get '/entries/new' do
@@ -39,7 +44,12 @@ end
 delete '/entries/:id' do
   @entry = find_and_ensure_entry(params[:id])
   @entry.destroy
-  redirect '/entries'
+
+  if request.xhr?
+    "Entry Removed Will Be Removed"
+  else
+    redirect '/entries'
+  end
 end
 
 get '/entries/:id/edit' do

@@ -1,2 +1,6 @@
-<%= @user.inspect %>
+<% if logged_in? %>
+  <p>EDIT YOUR INFORMATION</p>
+<% else %>
+  <p>LOGIN</p>
+<% end %>
 <%= erb :'users/_form', locals: { user: @user } %>
