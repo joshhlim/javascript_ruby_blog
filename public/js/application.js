@@ -4,5 +4,17 @@ $(document).ready(function() {
     $("form#post").show();
   })
 
-  $("main").on("click", '')
+  $("form#post").submit(function(e) {
+    e.preventDefault();
+    var input = $(this).serialize();
+    $.ajax({
+      method: "POST",
+      url: "/entries",
+      data: input
+    })
+    .done(function(response) {
+      $("form#post").hide();
+      $("ul.entries-list").append(response);
+    })
+  })
 });

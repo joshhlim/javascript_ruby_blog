@@ -5,15 +5,25 @@ get '/entries' do
 end
 
 post '/entries' do
-  params[:entry][:user_id] = session[:id]
-  @entry = Entry.new(params[:entry])
+  @entry = Entry.new(params)
+  @entry.assign_attributes(user_id: session[:id])
 
   if @entry.save
-    redirect "/entries/#{@entry.id}"
-  else
-    @errors = @entry.errors.full_messages
-    erb :'entries/new'
+    if request.xhr?
+      erb :"_post", dd:layout => false :locals => {:entry => @entry}
+    else
+      redirect "/entries/#{@entry.id}"
+    end
+      @errors = @entry.errors.full_messages
+      erb :'entries/new' 
   end
+
+  # if @entry.save
+  #   redirect "/entries/#{@entry.id}"
+  # else
+  #   @errors = @entry.errors.full_messages
+  #   erb :'entries/new'
+  # end
 end
 
 get '/entries/new' do
