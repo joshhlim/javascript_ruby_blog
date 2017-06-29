@@ -24,7 +24,7 @@ content_for_entries = [
 ]
 
 authors = [
-  {full_name: 'John the Ripper', email: 'ilovekilling@email.com', password: 'fuckvegans'}, {full_name: 'Mother Teresa', email: 'ilovehealing@email.com', password: 'lovevegans'}
+  {full_name: 'John the Ripper', email: 'email@email.com', password: 'password'}, {full_name: 'Mother Teresa', email: 'email@email.com', password: 'password'}
 ]
 authors.each do |author|
 User.create(author)
